@@ -33,8 +33,8 @@ public class Server {
             //设置管道工厂
             bootstrap.childHandler(new ChannelInitializer<Channel>() {
                 protected void initChannel(Channel ch) throws Exception {
-                  //  ch.pipeline().addLast(new StringDecoder());
-                  //  ch.pipeline().addLast(new StringEncoder());
+//                    ch.pipeline().addLast(new StringDecoder());
+//                    ch.pipeline().addLast(new StringEncoder());
                     ch.pipeline().addLast(new ServerHandler());
 
                 }

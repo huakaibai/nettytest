@@ -4,7 +4,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-import java.util.concurrent.Executors;
 
 /**
  * @author zhibin.wang
@@ -15,14 +14,16 @@ public class ServerHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
 
 
-    private UseService useService = new UseService();
-    protected void messageReceived(ChannelHandlerContext channelHandlerContext, ByteBuf s) throws Exception {
+    //private UseService useService = new UseService();
+    @Override
+    protected void messageReceived(ChannelHandlerContext channelHandlerContext, ByteBuf  s) throws Exception {
 
-     //   useService.messageProcess(s);
+        System.out.println("收到新消息");
+        //useService.messageProcess(s);
         byte[] req = new byte[s.readableBytes()];
         s.readBytes(req);
 
-        System.out.println(req.length);
+      System.out.println(req.length);
 
     }
 

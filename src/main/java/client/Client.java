@@ -1,0 +1,61 @@
+package client;
+
+import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+/**
+ * @author zhibin.wang
+ * @create 2018-12-17 16:31
+ * @desc
+ **/
+public class Client {
+
+    public static void main(String[] args){
+
+        Bootstrap bootstrap = new Bootstrap();
+
+        EventLoopGroup worker = new NioEventLoopGroup();
+
+        try {
+            //设置线程池
+            bootstrap.group(worker);
+
+            bootstrap.channel(NioSocketChannel.class);
+
+            bootstrap.handler(new ChannelInitializer<Channel>() {
+                protected void initChannel(Channel ch) throws Exception {
+//                  ch.pipeline().addLast(new StringDecoder());
+//                 ch.pipeline().addLast(new StringEncoder());
+                  ch.pipeline().addLast(new ClientHandler());
+                }
+            });
+
+            ChannelFuture connect = bootstrap.connect("127.0.0.1",10101);
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+            while(true){
+                System.out.println("请输入");
+                String msg =bufferedReader.readLine();
+                System.out.println(msg);
+                connect.channel().writeAndFlush(Unpooled.copiedBuffer(msg.getBytes(msg.getBytes())); //发送byte
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            worker.shutdownGracefully();
+        }
+    }
+}
