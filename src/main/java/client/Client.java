@@ -49,7 +49,7 @@ public class Client {
                 System.out.println("请输入");
                 String msg =bufferedReader.readLine();
                 System.out.println(msg);
-                connect.channel().writeAndFlush(Unpooled.copiedBuffer(msg.getBytes(msg.getBytes())); //发送byte
+                connect.channel().writeAndFlush(Unpooled.copiedBuffer(msg.getBytes())); //发送byte
             }
 
         }catch (Exception e){
