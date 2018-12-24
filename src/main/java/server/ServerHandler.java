@@ -1,5 +1,6 @@
 package server;
 
+import common.Util.StringUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -10,6 +11,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * @create 2018-12-17 13:48
  * @desc
  **/
+
 public class ServerHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
 
@@ -22,7 +24,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<ByteBuf> {
         //useService.messageProcess(s);
         byte[] req = new byte[s.readableBytes()];
         s.readBytes(req);
-
+        System.out.println(StringUtil.byte2hex(req));
       System.out.println(req.length);
 
     }

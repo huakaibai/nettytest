@@ -1,5 +1,6 @@
 package client;
 
+import common.Util.StringUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -45,12 +46,27 @@ public class Client {
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-            while(true){
-                System.out.println("请输入");
-                String msg =bufferedReader.readLine();
-                System.out.println(msg);
-                connect.channel().writeAndFlush(Unpooled.copiedBuffer(msg.getBytes())); //发送byte
+            String clientHellow = "160303003C010000380303EEEB2BDC099E8F4AEE02302673F9B12A5C369CCC6274A316BE8E29F9A1F3A73A00000A008B008C002C00AE00B0010000050001000102";
+            String tlsMessage = "170303000101";
+            byte[] bytes = StringUtil.HexString2Bytes(clientHellow);
+            byte[] bytes1 = StringUtil.HexString2Bytes(tlsMessage);
+            for (int i = 10; i > 0; i--){
+
+
+                if (bytes[0] == 0x16){
+                    System.out.println("0x16");
+                }
+                connect.channel().writeAndFlush(Unpooled.copiedBuffer(bytes)); //发送byte
+
+
+                if (bytes1[0] == 0x17){
+                    System.out.println("0x17");
+                }
+                connect.channel().writeAndFlush(Unpooled.copiedBuffer(bytes1)); //发送byte
+                Thread.sleep(1000);
             }
+
+            // connect.channel().writeAndFlush(clientHellow);
 
         }catch (Exception e){
             e.printStackTrace();

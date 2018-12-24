@@ -1,11 +1,12 @@
 package server;
 
+import common.TlsDecoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
+
 
 /**
  * @author zhibin.wang
@@ -33,9 +34,16 @@ public class Server {
             //设置管道工厂
             bootstrap.childHandler(new ChannelInitializer<Channel>() {
                 protected void initChannel(Channel ch) throws Exception {
-//                    ch.pipeline().addLast(new StringDecoder());
+              ch.pipeline().addLast(new TlsDecoder());
 //                    ch.pipeline().addLast(new StringEncoder());
-                    ch.pipeline().addLast(new ServerHandler());
+                    UseService useService = new UseService();
+                    ClientHelloHandler clientHelloHandler = new ClientHelloHandler();
+                    TlsMessageHandler tlsMessageHandler = new TlsMessageHandler();
+                    clientHelloHandler.setUseService(useService);
+                    tlsMessageHandler.setUseService(useService);
+                    ch.pipeline().addLast(clientHelloHandler);
+                    ch.pipeline().addLast(tlsMessageHandler);
+              //      ch.pipeline().addLast(new ServerHandler());
 
                 }
             });
