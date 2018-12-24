@@ -1,0 +1,3 @@
+# nettytest
+通过netty实现tls通道
+目前只是实现将tls对应协议转换为对应的java对象，用于解码，实现了TLS解码器
