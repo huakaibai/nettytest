@@ -1,7 +1,6 @@
-package server;
+package com.watchdata.server;
 
-import common.ClietnHello;
-import common.TlsMessage;
+import com.watchdata.common.TlsMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 

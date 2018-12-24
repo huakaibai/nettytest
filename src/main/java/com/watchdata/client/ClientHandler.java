@@ -1,4 +1,4 @@
-package client;
+package com.watchdata.client;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

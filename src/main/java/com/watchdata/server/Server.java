@@ -1,11 +1,11 @@
-package server;
+package com.watchdata.server;
 
-import common.TlsDecoder;
+import com.watchdata.common.TlsDecoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -13,9 +13,10 @@ import io.netty.handler.codec.string.StringDecoder;
  * @create 2018-12-17 13:34
  * @desc 服务端
  **/
+@Component
 public class Server {
 
-    public static  void main(String[] args){
+    public   void start (){
 
         //服务类
         ServerBootstrap bootstrap = new ServerBootstrap();
@@ -23,6 +24,9 @@ public class Server {
         EventLoopGroup boss = new NioEventLoopGroup();
 
         EventLoopGroup worker = new NioEventLoopGroup();
+
+        //业务类线程池
+        final EventLoopGroup handler = new NioEventLoopGroup();
 
         try {
             //设置线程池
@@ -36,14 +40,14 @@ public class Server {
                 protected void initChannel(Channel ch) throws Exception {
               ch.pipeline().addLast(new TlsDecoder());
 //                    ch.pipeline().addLast(new StringEncoder());
-                    UseService useService = new UseService();
-                    ClientHelloHandler clientHelloHandler = new ClientHelloHandler();
-                    TlsMessageHandler tlsMessageHandler = new TlsMessageHandler();
-                    clientHelloHandler.setUseService(useService);
-                    tlsMessageHandler.setUseService(useService);
-                    ch.pipeline().addLast(clientHelloHandler);
-                    ch.pipeline().addLast(tlsMessageHandler);
-              //      ch.pipeline().addLast(new ServerHandler());
+//                    UseService useService = new UseService();
+//                    ClientHelloHandler clientHelloHandler = new ClientHelloHandler();
+//                    TlsMessageHandler tlsMessageHandler = new TlsMessageHandler();
+//                    clientHelloHandler.setUseService(useService);
+//                    tlsMessageHandler.setUseService(useService);
+//                    ch.pipeline().addLast(clientHelloHandler);
+//                    ch.pipeline().addLast(tlsMessageHandler);
+                   ch.pipeline().addLast(handler,new ServerHandler());
 
                 }
             });

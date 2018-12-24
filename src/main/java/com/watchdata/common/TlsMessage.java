@@ -1,8 +1,6 @@
-package common;
+package com.watchdata.common;
 
-import common.Util.StringUtil;
-
-import java.util.Arrays;
+import com.watchdata.common.Util.StringUtil;
 
 /**
  * @author zhibin.wang

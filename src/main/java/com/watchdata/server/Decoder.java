@@ -1,4 +1,4 @@
-package server;
+package com.watchdata.server;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

@@ -1,4 +1,4 @@
-package common.Util;
+package com.watchdata.common.Util;
 
 /**
  * @author zhibin.wang

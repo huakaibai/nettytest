@@ -1,4 +1,4 @@
-package server;
+package com.watchdata.server;
 
 /**
  * @author zhibin.wang

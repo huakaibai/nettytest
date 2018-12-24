@@ -1,6 +1,6 @@
-package common;
+package com.watchdata.common;
 
-import common.Util.StringUtil;
+import com.watchdata.common.Util.StringUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -28,6 +28,7 @@ public class TlsDecoder extends ByteToMessageDecoder {
          *********************************************************************
          *
          */
+        System.out.println(Thread.currentThread().getName()+"decoder");
         // 可读长度必须大于基本长度
         if (in.readableBytes() <= 5) {
             return;
@@ -122,7 +123,10 @@ public class TlsDecoder extends ByteToMessageDecoder {
                 in.readBytes(compressionByte);
                 clietnHello.setCompression(compressionByte);
 
-                out.add(clietnHello);
+                BaseTls baseTls = new BaseTls();
+                baseTls.setType(ConstantValue.CLIENT_HELLO);
+                baseTls.setObject(clietnHello);
+                out.add(baseTls);
 
             }
         } else if (isDataExchange(head)) {
@@ -133,7 +137,10 @@ public class TlsDecoder extends ByteToMessageDecoder {
             in.readBytes(data);
             tlsMessage.setData(data);
 
-            out.add(tlsMessage);
+            BaseTls baseTls = new BaseTls();
+            baseTls.setType(ConstantValue.TLS_MESSAGE);
+            baseTls.setObject(tlsMessage);
+            out.add(baseTls);
         }
 
 

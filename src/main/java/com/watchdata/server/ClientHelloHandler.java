@@ -1,8 +1,6 @@
-package server;
+package com.watchdata.server;
 
-import common.ClietnHello;
-import common.Util.StringUtil;
-import io.netty.buffer.ByteBuf;
+import com.watchdata.common.ClietnHello;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 

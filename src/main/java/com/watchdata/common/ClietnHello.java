@@ -1,8 +1,6 @@
-package common;
+package com.watchdata.common;
 
-import common.Util.StringUtil;
-
-import java.util.Arrays;
+import com.watchdata.common.Util.StringUtil;
 
 /**
  * @author zhibin.wang
@@ -121,16 +119,15 @@ public class ClietnHello {
     @Override
     public String toString() {
         return "ClietnHello{" +
-                "head=" +  StringUtil.byte2hex(head) +
-
+                "head=" + StringUtil.byte2hex(head) +
                 ", length=" + StringUtil.byte2hex(length) +
                 ", handdshakeType=" + handdshakeType +
-                ", length2=" +  StringUtil.byte2hex(length2) +
+                ", length2=" + StringUtil.byte2hex(length2) +
                 ", major_version=" + major_version +
                 ", minor_version=" + minor_version +
                 ", randomValue=" + StringUtil.byte2hex(randomValue) +
                 ", sessionIdLength=" + sessionIdLength +
-                ", cipherSuiteLength=" +StringUtil.byte2hex(cipherSuiteLength) +
+                ", cipherSuiteLength=" + StringUtil.byte2hex(cipherSuiteLength) +
                 ", cipherSuite=" + StringUtil.byte2hex(cipherSuite) +
                 ", compression=" + StringUtil.byte2hex(compression) +
                 '}';
