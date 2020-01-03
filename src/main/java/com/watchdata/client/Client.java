@@ -1,6 +1,6 @@
 package com.watchdata.client;
 
-import com.watchdata.common.Util.StringUtil;
+import com.watchdata.common.util.StringUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -40,7 +40,7 @@ public class Client {
                 }
             });
 
-            ChannelFuture connect = bootstrap.connect("127.0.0.1",10101);
+            ChannelFuture connect = bootstrap.connect("127.0.0.1",9001);
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 

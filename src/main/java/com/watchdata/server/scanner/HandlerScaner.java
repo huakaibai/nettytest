@@ -24,6 +24,7 @@ public class HandlerScaner implements BeanPostProcessor {
 
         Class<?> clazz = o.getClass();
 
+
         Class<?>[] interfaces = clazz.getInterfaces();
         if (interfaces != null && interfaces.length > 0){
             for (Class<?> interFace: interfaces) {

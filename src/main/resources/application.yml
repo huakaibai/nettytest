@@ -1,0 +1,16 @@
+server:
+  port: 8500
+spring:
+  application:
+    name: app-tls-server
+
+tls:
+  server:
+    port: 9001
+    ip: 127.0.0.1
+    checkTime: 1000
+  client:
+    ip: 127.0.0.1
+    port: 9001
+    reConnectNum: 3
+    waitConnectTime: 10000

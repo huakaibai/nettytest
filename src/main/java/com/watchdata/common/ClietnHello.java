@@ -1,6 +1,6 @@
 package com.watchdata.common;
 
-import com.watchdata.common.Util.StringUtil;
+import com.watchdata.common.util.StringUtil;
 
 /**
  * @author zhibin.wang

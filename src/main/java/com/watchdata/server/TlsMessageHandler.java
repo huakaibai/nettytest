@@ -16,20 +16,9 @@ public class TlsMessageHandler extends SimpleChannelInboundHandler<TlsMessage> {
     private UseService useService ;
 
     //private UseService useService = new UseService();
-    @Override
-    protected void messageReceived(ChannelHandlerContext channelHandlerContext, TlsMessage  s) throws Exception {
-
-        System.out.println("收到新消息");
-        System.out.println(s);
-        useService.messageProcess("TlsMessageHandler UserService");
-    }
 
 
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("新用户加入");
-        super.channelActive(ctx);
-    }
+
 
 
     public UseService getUseService() {
@@ -38,5 +27,12 @@ public class TlsMessageHandler extends SimpleChannelInboundHandler<TlsMessage> {
 
     public void setUseService(UseService useService) {
         this.useService = useService;
+    }
+
+    @Override
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, TlsMessage tlsMessage) throws Exception {
+        System.out.println("收到新消息");
+        System.out.println(tlsMessage);
+        useService.messageProcess("TlsMessageHandler UserService");
     }
 }

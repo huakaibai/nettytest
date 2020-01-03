@@ -1,9 +1,16 @@
-package com.watchdata.common;
+package com.watchdata.common.netty.coder;
 
-import com.watchdata.common.Util.StringUtil;
+
+import com.watchdata.common.ClietnHello;
+import com.watchdata.common.ConstantValue;
+import com.watchdata.common.TlsMessage;
+import com.watchdata.common.netty.bean.BaseTls;
+import com.watchdata.common.util.StringUtil;
 import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.ByteToMessageDecoder;
+import io.netty.handler.codec.MessageToMessageDecoder;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -12,7 +19,9 @@ import java.util.List;
  * @create 2018-12-19 15:03
  * @desc
  **/
-public class TlsDecoder extends ByteToMessageDecoder {
+@Component
+@ChannelHandler.Sharable
+public class TlsDecoder extends MessageToMessageDecoder<ByteBuf> {
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
 

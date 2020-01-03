@@ -16,5 +16,5 @@ public interface TlsInterface {
     @TlsType(type = 1)
     void clientHello(UseService useService, ClietnHello clietnHello);
     @TlsType(type = 2)
-    void TlsMessage(UseService useService, TlsMessage tlsMessage);
+    void TlsMessage(UseService useService, TlsMessage tlsMessage,String key);
 }

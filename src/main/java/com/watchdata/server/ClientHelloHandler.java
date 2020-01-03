@@ -16,21 +16,9 @@ public class ClientHelloHandler extends SimpleChannelInboundHandler<ClietnHello>
 
 
     private UseService useService ;
-    @Override
-    protected void messageReceived(ChannelHandlerContext channelHandlerContext, ClietnHello  s) throws Exception {
-
-        System.out.println("收到新消息");
-        System.out.println(s);
-        useService.messageProcess("clientHello userService");
 
 
-    }
 
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("新用户加入 tlsss");
-        super.channelActive(ctx);
-    }
 
     public UseService getUseService() {
         return useService;
@@ -38,5 +26,13 @@ public class ClientHelloHandler extends SimpleChannelInboundHandler<ClietnHello>
 
     public void setUseService(UseService useService) {
         this.useService = useService;
+    }
+
+    @Override
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, ClietnHello clietnHello) throws Exception {
+
+        System.out.println("收到新消息");
+        System.out.println(clietnHello);
+        useService.messageProcess("clientHello userService");
     }
 }

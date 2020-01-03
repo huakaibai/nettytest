@@ -1,6 +1,6 @@
 package com.watchdata.server;
 
-import com.watchdata.common.TlsDecoder;
+import com.watchdata.common.netty.coder.TlsDecoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
